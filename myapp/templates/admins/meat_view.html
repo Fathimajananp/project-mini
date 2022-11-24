@@ -1,0 +1,45 @@
+{% extends "admins/checkout.html" %}
+{% block body %}
+    <form method="post" action="/myapp/search_admin_viewmeat/">
+        {% csrf_token %}
+    <table class="table table-hover">
+        <tr>
+            <td>
+    <input type="text" name="search" id="search" placeholder="Search Here.." class="form-control">
+            </td>
+            <td>
+    <input type="submit" name="submit" value="search" class="btn btn-success">
+            </td>
+        </tr>
+    </table>
+
+
+<div class="bg-light p-30 mb-5">
+<table class="table table-striped">
+		<tr class="bg-primary" height="50px">
+			<th>Sno</th>
+			<th >MeatName</th>
+			<th>Category</th>
+			<th>Price/Kg</th>
+{#            <th></th>#}
+            <th></th>
+            <th></th>
+		</tr>
+        {% for i in c %}
+		<tr>
+			<td width="50px">{{ forloop.counter }}</td>
+            <td>{{ i.meat_name }}<br>
+                <img src="{{ i.image }}" width="60px" height="60px">
+            </td>
+			<td>{{ i.type }}</td>
+			<td>{{ i.price_kg }}</td>
+			
+            <td width="50px"><a href="/myapp/edit_meat_admin/{{ i.id }}" class="btn btn-primary">EDIT</a></td>
+			<td width="50px"><a href="/myapp/adminmeatdelete/{{ i.id }}" class="btn btn-danger">DELETE</a></td>
+{#            <td width="50px"><a href="/myapp/adminmeatupdate/{{ i.id }}" class="btn btn-danger">UPDATE</a></td>#}
+        </tr>
+        {% endfor %}
+</table>
+</div>
+    </form>
+{% endblock %}

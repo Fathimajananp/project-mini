@@ -1,0 +1,55 @@
+{% extends "deliveryboy/checkout.html" %}
+{% block body %}
+
+
+    <form action="/myapp/search_delivery_assignedorders/" method="post">
+    {% csrf_token %}
+<div class="bg-light p-30 mb-5">
+<table class="table table-hover">
+    <tr>
+        <td>From Date<input type="date" name="search" class="form-control" id="search">
+        <td>To Date<input type="date" name="search1" class="form-control" id="search1">
+        <td><input type="submit" value="search" class="btn btn-success"></td>
+        </td>
+    </tr>
+</table>
+<table class="table table-striped">
+		<tr class="bg-primary" height="50px">
+			<th>Sno</th>
+            <th>Date</th>
+            <th>UserInfo</th>
+{#            <th>MeatName</th>#}
+            <th>OrderDate</th>
+            <th></th>
+            <th></th>
+
+            <th></th>
+
+		</tr>
+
+
+
+
+
+        {% for i in d %}
+		<tr>
+			<td width="50px">{{ forloop.counter }}</td>
+        <td> {{ i.date }}</td>
+        <td> {{ i.ORDER.user.name }}</td>
+{#            <td>{{ i.ORDER.STOCK.MEAT.meat_name }}</td>#}
+            <td>{{ i.ORDER.date | date:"Y-m-d" }}</td>
+            <td width="50px"><a href="/myapp/delivery_viewmoreassignorder/{{ i.ORDER.id }}" class="btn btn-info">More</a> </td>
+        <td width="60px" >
+            {% ifequal i.status 'Delivered' %}
+            Delivered
+            {% else %}
+              <a href="/myapp/deliverystatusupdate/{{ i.id }}" class="btn btn-success">SetFInished</a>
+            {% endifequal %}
+        </td>
+	     </tr>
+        {% endfor %}
+</table>
+</div>
+    </form>
+
+{% endblock %}

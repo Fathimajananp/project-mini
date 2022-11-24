@@ -1,0 +1,37 @@
+{% extends "user/checkout.html" %}
+{% block body %}
+    <form method="post" action="/myapp/userpayment/" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="bg-light p-30 mb-5">
+                    <div class="row">
+
+                        <div class="col-md-6 form-group">
+                                <label>Account Number</label>
+                                <input class="form-control" type="text" placeholder="Type here" name="account">
+                            </div>
+
+                           <div class="col-md-6 form-group">
+                            <label>Cvv</label>
+
+                                <input class="form-control" name="cvv" type="text" placeholder="123 Street">
+                            </div>
+
+
+
+ <div class="col-md-12">
+
+                                <h3 style="color: red">Total: {{ f }} </h3>
+
+                        </div>
+
+
+                        <div class="col-md-12">
+
+                                <input type="submit" value="Submit" class="btn btn-success" id="shipto">
+
+                        </div>
+                    </div>
+                </div>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "admins/checkout.html" %}
+{% block body %}
+    <form method="post" action="/myapp/search_deliveryboy_view/">
+        {% csrf_token %}
+    <table class="table table-hover">
+        <tr>
+            <td>
+    <input type="text" name="search" id="search" placeholder="Search Here.." class="form-control">
+            </td>
+            <td>
+    <input type="submit" name="submit" value="search" class="btn btn-success">
+            </td>
+        </tr>
+    </table>
+<div class="bg-light p-30 mb-5">
+<table class="table table-striped">
+		<tr class="bg-primary" height="50px">
+			<th>Sno</th>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Email</th>
+			<th>Phone</th>
+            <th></th>
+            <th></th>
+		</tr>
+        {% for i in data %}
+		<tr>
+			<td width="50px">{{ forloop.counter }}</td>
+            <td>{{ i.name }}</td>
+			<td>{{ i.housename }} <br> {{ i.place }} <br> {{ i.city }} <br> {{ i.state }} <br> {{ i.pincode }}</td>
+			<td>{{ i.email_id }}</td>
+			<td>{{ i.phone_no }}</td>
+            <td width="50px"><a href="/myapp/admin_deliveryboy_edit/{{ i.id }}" class="btn btn-primary">EDIT</a></td>
+			<td width="50px"><a href="/myapp/admin_deliveryboy_delete/{{ i.id }}" class="btn btn-danger">DELETE</a></td>
+        </tr>
+        {% endfor %}
+</table>
+</div>
+    </form>
+{% endblock %}

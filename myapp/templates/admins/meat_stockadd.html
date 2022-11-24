@@ -1,0 +1,48 @@
+{% extends "admins/checkout.html" %}
+{% block body %}
+    <form method="post" action="/myapp/admin_addmeatstock_post/">
+        {% csrf_token %}
+<div class="bg-light p-30 mb-5">
+                    <div class="row">
+
+
+
+                           <div class="col-md-6 form-group">
+                            <label>Choose Meat</label>
+                            <select class="custom-select" name="meat">
+                                {% for i in m %}
+                                <option value="{{ i.id }}">{{ i.meat_name }}-{{ i.type }}</option>
+                                {% endfor %}
+                            </select>
+                           </div>
+
+                         <div class="col-md-6 form-group">
+                         </div>
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label>Total Stock</label>
+                                <input class="form-control" name="stock" type="number" placeholder="Type here" min="1" required>
+                            </div>
+
+{#                        <div class="col-md-6 form-group">#}
+{#                                <label>Price/kg</label>#}
+{#                                <input class="form-control" name="stock" type="text" placeholder="Type here">#}
+{#                            </div>#}
+
+ <div class="col-md-6 form-group">
+                         </div>
+
+
+
+                        <div class="col-md-12">
+
+                                <input type="submit" value="Submit" class="btn btn-success" id="shipto">
+
+                        </div>
+                    </div>
+                </div>
+
+    </form>
+{% endblock %}

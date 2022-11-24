@@ -1,0 +1,53 @@
+{% extends "admins/checkout.html" %}
+{% block body %}
+    <form method="post" action="/myapp/search_admin_viewassignedorders/">
+        {% csrf_token %}
+     <table class="table table-hover">
+    <tr>
+        <td>From Date<input type="date" name="search" class="form-control" id="search">
+        <td>To Date<input type="date" name="search1" class="form-control" id="search1">
+        <td><input type="submit" value="search" class="btn btn-success"></td>
+        </td>
+    </tr>
+</table>
+
+
+
+<div class="bg-light p-30 mb-5">
+<table class="table table-striped">
+		<tr class="bg-primary" height="50px">
+			<th>Sno</th>
+			<th>CustomerInfo</th>
+{#            <th>MeatName</th>#}
+            <th>OrderDate</th>
+{#            <th>Quantity</th>#}
+
+            <th>OrderAssign</th>
+            <th>Status</th>
+            <th></th>
+
+		</tr>
+
+
+        {% for i in c %}
+		<tr>
+			<td width="50px">{{ forloop.counter }}</td>
+            <td>{{ i.ORDER.user.name }}
+            <br>{{ i.ORDER.user.house_name }}
+            <br>{{ i.ORDER.user.city }}
+            </td>
+{#            <td>{{ i.ORDER.STOCK.MEAT.meat_name }}#}
+            </td>
+            <td>{{ i.ORDER.date }}</td>
+{#            <td>{{ i.ORDER.quantity }}</td>#}
+            <td>{{ i.DELIVERY.name }} <br>
+                {{ i.DELIVERY.phone_no }}
+            </td>
+            <td>{{ i.status }}</td>
+        <td><a href="/myapp/assigned_viewmore/{{ i.ORDER.id }}" class="btn btn-info">More</a> </td>
+	     </tr>
+        {% endfor %}
+</table>
+</div>
+    
+{% endblock %}

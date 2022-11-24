@@ -1,0 +1,48 @@
+{% extends "admins/checkout.html" %}
+{% block body %}
+    <form method="post" action="/myapp/admin_addmeat_post/" enctype="multipart/form-data">
+        {% csrf_token %}
+<div class="bg-light p-30 mb-5">
+                    <div class="row">
+
+                        <div class="col-md-6 form-group">
+                                <label>Meat Name</label>
+                                <input required class="form-control" type="text" placeholder="Type here" name="name">
+                            </div>
+
+                           <div class="col-md-6 form-group">
+                            <label>Category</label>
+{#                               <input required class="form-control" type="text" placeholder="Type here" name="meattype">#}
+                            <select class="custom-select" name="meattype" required>
+                                <option selected value="Mutton">Mutton</option>
+                                 <option value="Fish">Fish</option>
+                                <option value="Chicken">Chicken</option>
+{#                                <option value="Boneless">Boneless</option>#}
+                            </select>
+                           </div>
+                            <div class="col-md-6 form-group">
+                                <label>Price/Kg</label>
+                                <input required min="1" class="form-control" name="price" type="text" placeholder="123 Street">
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label>Choose Image</label>
+                                <input class="form-control" type="file" required name="file" placeholder="123 Street">
+                            </div>
+
+
+
+
+                        <div class="col-md-12">
+
+                                <input type="submit" value="Submit" class="btn btn-success" id="shipto">
+
+                        </div>
+                    </div>
+                </div>
+
+    </form>
+{% endblock %}

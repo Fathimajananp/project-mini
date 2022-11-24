@@ -1,0 +1,37 @@
+{% extends "user/checkout.html" %}
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/myapp/useraddcartpost">
+        {% csrf_token %}
+ <input type="hidden" name="mid" value="{{ mid.id }}">
+		<table align="center" border="2" class="table table-hover">
+			<tr>
+			<td>Quantity</td>
+			<td><input type="number" min="1" name="qnty" class="form-control" min="0" max="{{ curstock }}" required></td>
+		</tr>
+		<tr align="center">
+			<td colspan="2">
+
+                {% ifequal curstock 0 %}
+                    out of stock
+                {% else %}
+                <input type="submit" name="btn" value="submit" class="btn btn-success">
+            {% endifequal %}
+
+            </td>
+		</tr>
+		</table>
+	</form>
+
+</body>
+</html>
+
+{% endblock %}
